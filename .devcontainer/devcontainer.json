@@ -30,8 +30,8 @@
       // Define configurações visuais e de ambiente do Visual Studio Code
       "settings": {
         "workbench.colorTheme": "Dark Modern", // Tema
-        "editor.fontSize": 20, // Fonte do editor
-        "terminal.integrated.fontSize": 20, // Fonte do terminal
+        "editor.fontSize": 14, // Fonte do editor
+        "terminal.integrated.fontSize": 14, // Fonte do terminal
         "java.server.launchMode": "Standard" // Executa o Java em modo "normal"
       }
     }
