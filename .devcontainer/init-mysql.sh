@@ -38,8 +38,10 @@ CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
 CREATE USER IF NOT EXISTS 'kaua'@'%' IDENTIFIED BY 'Kaua15111006.';
+CREATE USER IF NOT EXISTS 'kaua'@'localhost' IDENTIFIED BY 'Kaua15111006.';
 
 GRANT ALL PRIVILEGES ON ecommerce.* TO 'kaua'@'%';
+GRANT ALL PRIVILEGES ON ecommerce.* TO 'kaua'@'localhost';
 
 FLUSH PRIVILEGES;
 EOF

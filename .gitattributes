@@ -1,0 +1,4 @@
+# Forçar finais de linha LF para scripts shell e arquivos Linux
+*.sh text eol=lf
+/ecommerce/mvnw text eol=lf
+*.cmd text eol=crlf
