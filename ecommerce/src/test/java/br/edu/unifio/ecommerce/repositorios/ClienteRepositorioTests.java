@@ -1,25 +1,134 @@
 package br.edu.unifio.ecommerce.repositorios;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import br.edu.unifio.ecommerce.entidades.Cliente;
 
-@SpringBootTest 
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClienteRepositorioTests {
 
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
     @Test
-    public void deveBuscarUmClientePorId() {
-        Cliente cliente = clienteRepositorio.findById(2).orElseThrow();
+    @Order(1)
+    public void deveListarTodosOsClientes() {
 
-        assertNotNull(cliente);
-        assertEquals("Mariana Silva", cliente.getNome());
+        int totalInicial = clienteRepositorio.findAll().size();
+
+        Cliente c1 = new Cliente();
+        c1.setNome("Cliente Lista 1");
+        c1.setEmail("cliente1@teste.com");
+        c1.setTelefone("14999990011");
+        clienteRepositorio.save(c1);
+
+        Cliente c2 = new Cliente();
+        c2.setNome("Cliente Lista 2");
+        c2.setEmail("cliente2@teste.com");
+        c2.setTelefone("14999990012");
+        clienteRepositorio.save(c2);
+
+        List<Cliente> clientes = clienteRepositorio.findAll();
+
+        assertTrue(clientes.size() >= 2);
+        assertEquals(totalInicial + 2, clientes.size());
+    }
+
+    @Test
+    @Order(2)
+    public void deveBuscarUmClientePorId() {
+
+        Cliente cliente = new Cliente();
+        cliente.setNome("Lucas Silva");
+        cliente.setEmail("lucas.silva@email.com");
+        cliente.setTelefone("14999990013");
+
+        clienteRepositorio.save(cliente);
+
+        Cliente clienteEncontrado = clienteRepositorio
+                .findById(cliente.getId())
+                .orElseThrow();
+
+        assertEquals(cliente.getId(), clienteEncontrado.getId());
+        assertEquals("Lucas Silva", clienteEncontrado.getNome());
+        assertEquals("lucas.silva@email.com", clienteEncontrado.getEmail());
+    }
+
+    @Test
+    @Order(3)
+    public void deveExcluirUmClientePorId() {
+
+        Cliente cliente = new Cliente();
+
+        cliente.setNome("Cliente Exclusão");
+        cliente.setEmail("exclusao@email.com");
+        cliente.setTelefone("14999999991");
+
+        clienteRepositorio.save(cliente);
+
+        assertTrue(clienteRepositorio.existsById(cliente.getId()));
+
+        clienteRepositorio.deleteById(cliente.getId());
+
+        assertFalse(clienteRepositorio.existsById(cliente.getId()));
+    }
+
+    @Test
+    @Order(4)
+    public void deveSalvarUmCliente() {
+
+        Cliente cliente = new Cliente();
+
+        cliente.setNome("Cliente Teste");
+        cliente.setEmail("cliente.teste@email.com");
+        cliente.setTelefone("14999999992");
+
+        clienteRepositorio.save(cliente);
+
+        assertTrue(clienteRepositorio.existsById(cliente.getId()));
+
+        assertEquals(
+                "Cliente Teste",
+                clienteRepositorio
+                        .findById(cliente.getId())
+                        .orElseThrow()
+                        .getNome()
+        );
+    }
+
+    @Test
+    @Order(5)
+    public void deveAlterarUmCliente() {
+
+        Cliente cliente = new Cliente();
+
+        cliente.setNome("Cliente Original");
+        cliente.setEmail("original@email.com");
+        cliente.setTelefone("14999999993");
+
+        clienteRepositorio.save(cliente);
+
+        cliente.setNome("Cliente Alterado");
+        cliente.setEmail("alterado@email.com");
+
+        clienteRepositorio.save(cliente);
+
+        Cliente clienteAlterado = clienteRepositorio
+                .findById(cliente.getId())
+                .orElseThrow();
+
+        assertEquals("Cliente Alterado", clienteAlterado.getNome());
+        assertEquals("alterado@email.com", clienteAlterado.getEmail());
     }
 }

@@ -3,9 +3,6 @@ package br.edu.unifio.ecommerce.entidades;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +21,6 @@ public class Pagamento {
     private Integer id;
 
     private BigDecimal valor;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
     private LocalDateTime data;
     private String status;
     private String tipo;

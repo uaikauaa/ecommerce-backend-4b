@@ -1,41 +1,47 @@
 -- CATEGORIAS
-INSERT INTO categoria (nome, descricao) VALUES ('Perifericos', 'Perifericos e Acessorios para Computador');
-INSERT INTO categoria (nome, descricao) VALUES ('Livros', 'Livros Tecnicos e Didaticos');
-INSERT INTO categoria (nome, descricao) VALUES ('Hardware', 'Pecas e Componentes de Hardware');
-INSERT INTO categoria (nome, descricao) VALUES ('Monitores', 'Monitores e Displays de Alta Definicao');
-INSERT INTO categoria (nome, descricao) VALUES ('Audio', 'Headsets, Fones e Caixas de Som');
+
+insert into categoria (nome, descricao) values ('Informática', 'Produtos de informática');
+insert into categoria (nome, descricao) values ('Livros', 'Livros técnicos e educacionais');
+insert into categoria (nome, descricao) values ('Games', 'Produtos relacionados a jogos');
+insert into categoria (nome, descricao) values ('Periféricos', 'Acessórios e periféricos');
+insert into categoria (nome, descricao) values ('Escritório', 'Produtos para escritório');
 
 -- PRODUTOS
-INSERT INTO produto (nome, descricao, preco, estoque, categoria_id) VALUES ('Teclado Mecanico RGB', 'Teclado switch blue com iluminacao RGB e anti-ghosting', 289.90, 25, 1);
-INSERT INTO produto (nome, descricao, preco, estoque, categoria_id) VALUES ('Arquitetura Limpa', 'Livro do Autor Robert C. Martin sobre software design', 92.50, 15, 2);
-INSERT INTO produto (nome, descricao, preco, estoque, categoria_id) VALUES ('Placa de Video RTX 4060 8GB', 'Placa de video com Ray Tracing e DLSS 3', 2399.00, 10, 3);
-INSERT INTO produto (nome, descricao, preco, estoque, categoria_id) VALUES ('Monitor Gamer 24 Pol 144Hz', 'Painel IPS Full HD tempo de resposta 1ms', 899.90, 18, 4);
-INSERT INTO produto (nome, descricao, preco, estoque, categoria_id) VALUES ('Headset Gamer 7.1 Surround', 'Headset com microfone retratil e cancelamento de ruido', 349.00, 30, 5);
+
+insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Notebook Lenovo', 'Notebook para estudos e trabalho', 3500.00, 10, 1);
+insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Código Limpo', 'Livro do autor Robert C. Martin', 87.34, 20, 2);
+insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Controle Gamer', 'Controle para jogos', 299.90, 15, 3);
+insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Mouse Gamer', 'Mouse com alta precisão', 150.00, 30, 4);
+insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Cadeira de Escritório', 'Cadeira ergonômica', 899.90, 8, 5);
 
 -- CLIENTES
-INSERT INTO cliente (nome, email, telefone) VALUES ('Kaua Gustavo', 'kaua.gustavo@email.com', '1499888-1122');
-INSERT INTO cliente (nome, email, telefone) VALUES ('Mariana Silva', 'mariana.silva@email.com', '1499777-2233');
-INSERT INTO cliente (nome, email, telefone) VALUES ('Lucas Ferreira', 'lucas.ferreira@email.com', '1499666-3344');
-INSERT INTO cliente (nome, email, telefone) VALUES ('Beatriz Souza', 'beatriz.souza@email.com', '1499555-4455');
-INSERT INTO cliente (nome, email, telefone) VALUES ('Gabriel Oliveira', 'gabriel.oliveira@email.com', '1499444-5566');
+
+insert into cliente (nome, email, telefone) values ('Ana Silva', 'ana@email.com', '14999990001');
+insert into cliente (nome, email, telefone) values ('Carlos Souza', 'carlos@email.com', '14999990002');
+insert into cliente (nome, email, telefone) values ('Beatriz Lima', 'beatriz@email.com', '14999990003');
+insert into cliente (nome, email, telefone) values ('Joao Santos', 'joao@email.com', '14999990004');
+insert into cliente (nome, email, telefone) values ('Mariana Oliveira', 'mariana@email.com', '14999990005');
 
 -- PEDIDOS
-INSERT INTO pedido (data, status, valor_total, cliente_id) VALUES (NOW(), 'Aguardando Pagamento', 289.90, 1);
-INSERT INTO pedido (data, status, valor_total, cliente_id) VALUES (NOW(), 'Pago', 92.50, 2);
-INSERT INTO pedido (data, status, valor_total, cliente_id) VALUES (NOW(), 'Enviado', 2399.00, 3);
-INSERT INTO pedido (data, status, valor_total, cliente_id) VALUES (NOW(), 'Entregue', 1248.90, 4);
-INSERT INTO pedido (data, status, valor_total, cliente_id) VALUES (NOW(), 'Cancelado', 349.00, 5);
 
--- ITENS DE PEDIDO
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 289.90, 1, 1);
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 92.50, 2, 2);
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 2399.00, 3, 3);
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 899.90, 4, 4);
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 349.00, 4, 5);
+insert into pedido (data, status, valor_total, cliente_id) values ('2026-09-01 10:00:00', 'PAGO', 3500.00, 1);
+insert into pedido (data, status, valor_total, cliente_id) values ('2026-09-01 11:00:00', 'PAGO', 87.34, 2);
+insert into pedido (data, status, valor_total, cliente_id) values ('2026-09-01 12:00:00', 'PENDENTE', 299.90, 3);
+insert into pedido (data, status, valor_total, cliente_id) values ('2026-09-01 13:00:00', 'PAGO', 300.00, 4);
+insert into pedido (data, status, valor_total, cliente_id) values ('2026-09-01 14:00:00', 'PENDENTE', 899.90, 5);
+
+-- ITENS DOS PEDIDOS
+
+insert into item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 3500.00, 1, 1);
+insert into item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 87.34, 2, 2);
+insert into item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 299.90, 3, 3);
+insert into item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (2, 150.00, 4, 4);
+insert into item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 899.90, 5, 5);
 
 -- PAGAMENTOS
-INSERT INTO pagamento (valor, data, status, tipo, pedido_id) VALUES (289.90, NOW(), 'Pendente', 'PIX', 1);
-INSERT INTO pagamento (valor, data, status, tipo, pedido_id) VALUES (92.50, DATE_SUB(NOW(), INTERVAL 3 DAY), 'Aprovado', 'CARTAO_CREDITO', 2);
-INSERT INTO pagamento (valor, data, status, tipo, pedido_id) VALUES (2399.00, DATE_SUB(NOW(), INTERVAL 2 DAY), 'Aprovado', 'BOLETO', 3);
-INSERT INTO pagamento (valor, data, status, tipo, pedido_id) VALUES (1248.90, DATE_SUB(NOW(), INTERVAL 1 DAY), 'Aprovado', 'PIX', 4);
-INSERT INTO pagamento (valor, data, status, tipo, pedido_id) VALUES (349.00, NOW(), 'Cancelado', 'CARTAO_CREDITO', 5);
+
+insert into pagamento (valor, data, status, tipo, pedido_id) values (3500.00, '2026-09-01 10:05:00', 'APROVADO', 'PIX', 1);
+insert into pagamento (valor, data, status, tipo, pedido_id) values (87.34, '2026-09-01 11:05:00', 'APROVADO', 'CARTAO', 2);
+insert into pagamento (valor, data, status, tipo, pedido_id) values (299.90, '2026-09-01 12:05:00', 'PENDENTE', 'BOLETO', 3);
+insert into pagamento (valor, data, status, tipo, pedido_id) values (300.00, '2026-09-01 13:05:00', 'APROVADO', 'PIX', 4);
+insert into pagamento (valor, data, status, tipo, pedido_id) values (899.90, '2026-09-01 14:05:00', 'PENDENTE', 'CARTAO', 5);
